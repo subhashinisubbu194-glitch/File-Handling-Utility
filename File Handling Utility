@@ -1,0 +1,48 @@
+import java.io.*;
+
+public class FileHandlingUtility {
+
+    public static void main(String[] args) {
+
+        String fileName = "sample.txt";
+
+        try {
+            // Write to file
+            FileWriter writer = new FileWriter(fileName);
+            writer.write("Hello, this is Task 1 of CodTech Internship.\n");
+            writer.write("Java File Handling Example.");
+            writer.close();
+
+            System.out.println("Data written successfully.\n");
+
+            // Read file
+            System.out.println("File Contents:");
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+
+            // Modify file (append new content)
+            FileWriter modifyWriter = new FileWriter(fileName, true);
+            modifyWriter.write("\nThis line was added during modification.");
+            modifyWriter.close();
+
+            System.out.println("\nFile modified successfully.");
+
+            // Read updated file
+            System.out.println("\nUpdated File Contents:");
+            BufferedReader updatedReader = new BufferedReader(new FileReader(fileName));
+
+            while ((line = updatedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            updatedReader.close();
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
